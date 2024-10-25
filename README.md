@@ -1,5 +1,9 @@
 # TP 4 - Sockets
 
+## Nota Viernes 25 de Octubre (Carlos)
+
+Ignorar la parte del cliente, no hace nada.
+
 ## Como usarlo
 
 ### Requirimientos

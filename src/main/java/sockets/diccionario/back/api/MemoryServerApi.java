@@ -3,6 +3,8 @@ package sockets.diccionario.back.api;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.java.Log;
+import sockets.diccionario.back.constant.BodyConstant;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -11,6 +13,7 @@ import java.util.function.Function;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
+@Log
 public class MemoryServerApi implements ServerApi {
 
     ConcurrentMap<String, String> diccionario = new ConcurrentHashMap<>();
@@ -20,12 +23,13 @@ public class MemoryServerApi implements ServerApi {
 
     @Override
     public String listar(String a) {
-        return String.join(",", diccionario.keySet());
+        String res = String.join(BodyConstant.UNION_LISTA, diccionario.keySet());
+        return res;
     }
 
     @Override
     public String insertar(String parametros) {
-        String[] params = parametros.split(":");
+        String[] params = parametros.split(BodyConstant.SEPARADOR_PARAM);
         if (diccionario.containsKey(parametros) || params.length != 2) {
             return error;
         }
@@ -35,7 +39,7 @@ public class MemoryServerApi implements ServerApi {
 
     @Override
     public String modificar(String parametros) {
-        String[] params = parametros.split(":");
+        String[] params = parametros.split(BodyConstant.SEPARADOR_PARAM);
         if (!diccionario.containsKey(parametros) || params.length != 2) {
             return error;
         }

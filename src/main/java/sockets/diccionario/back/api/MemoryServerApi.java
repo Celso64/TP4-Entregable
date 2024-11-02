@@ -29,21 +29,35 @@ public class MemoryServerApi implements ServerApi {
 
     @Override
     public String insertar(String parametros) {
-        String[] params = parametros.split(BodyConstant.SEPARADOR_PARAM);
-        if (diccionario.containsKey(parametros) || params.length != 2) {
+        int separadorIndex = parametros.indexOf(BodyConstant.SEPARADOR_PARAM);
+
+        if (separadorIndex == -1)
             return error;
-        }
-        diccionario.put(params[0], params[1]);
+
+        String palabra = parametros.substring(0, separadorIndex);
+        String significado = parametros.substring(separadorIndex + BodyConstant.SEPARADOR_PARAM.length());
+
+        if (diccionario.containsKey(palabra))
+            return error;
+
+        diccionario.put(palabra, significado);
         return ok;
     }
 
     @Override
     public String modificar(String parametros) {
-        String[] params = parametros.split(BodyConstant.SEPARADOR_PARAM);
-        if (!diccionario.containsKey(parametros) || params.length != 2) {
+        int separadorIndex = parametros.indexOf(BodyConstant.SEPARADOR_PARAM);
+
+        if (separadorIndex == -1)
             return error;
-        }
-        diccionario.put(params[0], params[1]);
+
+        String palabra = parametros.substring(0, separadorIndex);
+        String significado = parametros.substring(separadorIndex + BodyConstant.SEPARADOR_PARAM.length());
+
+        if (!diccionario.containsKey(palabra))
+            return error + ": La palabra "+ palabra +" no existe";
+
+        diccionario.put(palabra, significado);
         return ok;
     }
 
@@ -63,6 +77,7 @@ public class MemoryServerApi implements ServerApi {
         }
         return error;
     }
+
 
     public Map<String, Function<String, String>> obtenerFunciones() {
         return Map.of(

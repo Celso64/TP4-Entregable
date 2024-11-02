@@ -1,5 +1,6 @@
 package sockets.diccionario.front.service;
 
+import sockets.diccionario.front.config.ClienteConfig;
 import sockets.diccionario.front.controller.ClienteController;
 import sockets.diccionario.front.utils.InputParser;
 
@@ -20,10 +21,13 @@ public class DiccionarioService {
                 System.out.println("Comando no válido. Inténtelo de nuevo.");
                 return;
             }
+
             String respuesta = controller.enviarComando(inputLine);
             System.out.println("Respuesta del servidor: " + respuesta);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
 }

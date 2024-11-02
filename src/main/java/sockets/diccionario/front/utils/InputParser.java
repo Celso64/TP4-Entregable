@@ -14,22 +14,24 @@ public class InputParser {
             case "insertar":
                 System.out.println("Ingrese la palabra y el significado, separados por un espacio:");
                 String palabraYSignificado = scanner.nextLine();
-                inputLine = "insertar-" + palabraYSignificado.replace(" ", ClienteConfig.SEPARADOR_PARAM);
+                inputLine = "insertar" + ClienteConfig.SEPARADOR_COMANDO +
+                        palabraYSignificado.replace(" ", ClienteConfig.SEPARADOR_PARAM);
                 break;
             case "modificar":
                 System.out.println("Ingrese la palabra y el nuevo significado, separados por un espacio:");
                 String palabraYNuevoSignificado = scanner.nextLine();
-                inputLine = "modificar-" + palabraYNuevoSignificado.replace(" ", ClienteConfig.SEPARADOR_PARAM);
+                inputLine = "modificar" + ClienteConfig.SEPARADOR_COMANDO +
+                        palabraYNuevoSignificado.replace(" ", ClienteConfig.SEPARADOR_PARAM);
                 break;
             case "eliminar":
                 System.out.println("Ingrese la palabra a eliminar:");
                 String palabraEliminar = scanner.nextLine();
-                inputLine = "eliminar-" + palabraEliminar;
+                inputLine = "eliminar" + ClienteConfig.SEPARADOR_COMANDO + palabraEliminar;
                 break;
             case "obtener":
                 System.out.println("Ingrese la palabra para obtener el significado:");
                 String palabraObtener = scanner.nextLine();
-                inputLine = "obtener-" + palabraObtener;
+                inputLine = "obtener" + ClienteConfig.SEPARADOR_COMANDO + palabraObtener;
                 break;
             default:
                 System.out.println("Comando no reconocido.");

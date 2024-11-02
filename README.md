@@ -1,8 +1,9 @@
 # TP 4 - Sockets
 
-## Nota Viernes 25 de Octubre (Carlos)
+## Integrantes
 
-Ignorar la parte del cliente, no hace nada.
+- Carlos Farra
+- Francisco Martin
 
 ## Como usarlo
 
